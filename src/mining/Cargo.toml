@@ -1,0 +1,39 @@
+[package]
+edition = "2021"
+name = "mining"
+version = "0.1.0"
+
+[dependencies]
+
+# rapidhash: A high-performance crate for hashing algorithms. 
+# we can use it to do a 128bit hashing
+rapidhash = "1.2.0"
+
+#We will use SHA-128 to let more miners mine on classic desktop machines
+#Provides the SHA-256 hashing algorithm, which is crucial for blockchain mining. 
+#sha2 = "0.10"
+
+#This crate is used for generating random numbers, used to create a "nonce"
+rand = "0.8"
+
+# serde: This crate is a serialization framework in Rust.
+# convert Rust data structures to JSON, YAML, or binary formats. 
+# this is useful for serializing blocks of data (such as the block header, transaction list, etc.) 
+# so that they can be stored or sent to other nodes in the network.
+
+# serde_json: A specific implementation of Serde that serializes/deserializes data into and from JSON. 
+# for miners or nodes to communicate with each other or with other services using JSON
+# convert blockchain data (blocks, transactions, etc.) into JSON for storage or transmission.
+serde_json = "1.0"
+
+#MAYBE IN MORE ADVANCED IMPLEMENTATION
+# Borsh for binary serialization (more efficient than JSON for internal data).
+#borsh = "0.10"
+
+#MIGHT NOT BE NECESSARY, CAUSE USING CALIMERO
+# tokio: A runtime for writing asynchronous applications in Rust.
+# Can be useful to deal with mining pools or interacting with other blockchain nodes.
+# multiple tasks concurrently, which makes it easier to scale and improve the responsiveness of your 
+# miner. The `features = ["full"]` option includes all of Tokio's modules, giving you the flexibility 
+# to use async tasks for network communication, file handling, etc.
+tokio = {version = "1", features = ["full"]}
