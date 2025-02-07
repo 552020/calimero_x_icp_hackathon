@@ -1,3 +1,0 @@
-service : () -> {
-    cycles_left : () -> (nat64) query;
-}

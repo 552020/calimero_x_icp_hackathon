@@ -55,36 +55,45 @@ initialize_node() {
 
   echo "Initializing $node on server port $server_port and swarm port $swarm_port."
   mkdir -p "$base_dir/$node"  # Ensure the directory exists
-  tmux send-keys -t my_session "merod --node-name $node init --server-port $server_port --swarm-port $swarm_port" C-m
+  tmux send-keys -t calimero_nodes "merod --node-name $node init --server-port $server_port --swarm-port $swarm_port" C-m
 }
 
 # Function to run nodes in separate tmux windows
 run_nodes() {
-  for node in "${nodes[@]}"; do
-    node_dir="$base_dir/$node"
-    if [ ! -d "$node_dir" ]; then
-      echo "Error: Directory for $node does not exist at $node_dir. Please initialize the node first."
-      exit 1
-    fi
+    for node in "${nodes[@]}"; do
+        node_dir="$base_dir/$node"
+        if [ ! -d "$node_dir" ]; then
+            echo "Error: Directory for $node does not exist at $node_dir. Please initialize the node first."
+            exit 1
+        fi
 
-    echo "Starting $node in a new tmux window..."
-    tmux new-window -t my_session -n "$node"
-    tmux send-keys -t my_session:"$node" "merod --node-name $node run" C-m
-  done
+        echo "Starting $node in a new tmux window..."
+        # Create a new window with the node name
+        tmux new-window -t calimero_nodes -n "$node"
+        # Send the command to run the node
+        tmux send-keys -t calimero_nodes:"$node" "merod --node-name $node run" C-m
+    done
+    # Switch back to first window
+    tmux select-window -t calimero_nodes:script
 }
 
-# Start the main script
-check_ports
+# Start tmux session with an initial window
+echo "Creating initial tmux session..."
+echo "Current tmux sessions before creation:"
+tmux ls || echo "No tmux sessions exist"
 
-# Start tmux session
-tmux new-session -d -s my_session
+tmux new-session -d -s calimero_nodes -n "script"
 
-# Run nodes in separate tmux windows
-run_nodes
-
+echo "Current tmux sessions after creation:"
+tmux ls || echo "No tmux sessions exist"
 
 # Check and initialize nodes
 check_node_dirs
 
+
+
+# Run nodes in separate tmux windows
+run_nodes
+
 # Attach to the session
-tmux attach -t my_session
+tmux attach -t calimero_nodes

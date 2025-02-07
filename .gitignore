@@ -31,3 +31,12 @@ yarn-error.log*
 # Testing
 coverage/
 .vercel
+
+# ignore ONNX models
+*.onnx
+
+# ignore python virtual environment
+.venv/
+/venv/
+**/.venv/
+**/venv/

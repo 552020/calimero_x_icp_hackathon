@@ -1,0 +1,114 @@
+[identity]
+peer_id = "12D3KooW9xxpdwz4yCHLMgpbtqfrH8VX3urg3wzPQ627h5PUqmAS"
+keypair = "23jhTb7U6zo2gF3FNTV2ZWP7XXUdED5bBmxJqkyYJFSePFExaUPYopb2meqdgFJWeSGvzFscVJ2otV6L7h7Qtk6RVYXHL"
+
+[swarm]
+listen = [
+    "/ip4/0.0.0.0/tcp/2527",
+    "/ip4/0.0.0.0/udp/2527/quic-v1",
+    "/ip6/::/tcp/2527",
+    "/ip6/::/udp/2527/quic-v1",
+]
+
+[server]
+listen = [
+    "/ip4/127.0.0.1/tcp/2427",
+    "/ip6/::1/tcp/2427",
+]
+
+[server.admin]
+enabled = true
+
+[server.jsonrpc]
+enabled = true
+
+[server.websocket]
+enabled = true
+
+[bootstrap]
+nodes = [
+    "/ip4/18.156.18.6/udp/4001/quic-v1/p2p/12D3KooWMgoF9xzyeKJHtRvrYwdomheRbHPELagWZwTLmXb6bCVC",
+    "/ip4/18.156.18.6/tcp/4001/p2p/12D3KooWMgoF9xzyeKJHtRvrYwdomheRbHPELagWZwTLmXb6bCVC",
+]
+
+[discovery]
+mdns = true
+
+[discovery.rendezvous]
+namespace = "/calimero/devnet/global"
+discovery_rpm = 0.5
+registrations_limit = 3
+
+[discovery.rendezvous.discovery_interval]
+secs = 90
+nanos = 0
+
+[discovery.relay]
+registrations_limit = 3
+
+[sync]
+timeout_ms = 30000
+interval_ms = 30000
+
+[datastore]
+path = "data"
+
+[blobstore]
+path = "blobs"
+
+[context.config.icp]
+signer = "self"
+protocol = "icp"
+network = "local"
+contract_id = "bkyz2-fmaaa-aaaaa-qaaaq-cai"
+
+[context.config.near]
+signer = "relayer"
+protocol = "near"
+network = "testnet"
+contract_id = "calimero-context-config.testnet"
+
+[context.config.starknet]
+signer = "relayer"
+protocol = "starknet"
+network = "sepolia"
+contract_id = "0x1b991ee006e2d1e372ab96d0a957401fa200358f317b681df2948f30e17c29c"
+
+[context.config.signer.relayer]
+url = "http://3.125.79.112:63529/"
+
+[context.config.signer.self.icp.ic]
+rpc_url = "https://ic0.app/"
+account_id = "zzh6d-zrlnz-iouyj-u7tk2-isnjj-4uzid-hh7pr-ceyfy-p2t3z-g7z2d-hae"
+public_key = "2b6e50ea6134fcd5a449a94f29940ce7fbe22260b87ea7bc9bf9d0ce02"
+secret_key = "0ae6e09fa3463fde96e66bea48244cf916edaa017211059c4e5ac8c5e2bd2602"
+
+[context.config.signer.self.icp.local]
+rpc_url = "http://127.0.0.1:4943/"
+account_id = "4tvux-f4o64-r4irl-struc-tmzcm-e73vp-hcnhb-5rsfy-4mq64-a3r2m-mae"
+public_key = "8ef723c445729c6829b322613fbabce269c3d8c8b8e321ee0371d31802"
+secret_key = "6207b6f4e2f77ac511b896d0c5ef15b86afd88e80f8e33dc03dbbad9cb3fbcc2"
+
+[context.config.signer.self.near.mainnet]
+rpc_url = "https://rpc.mainnet.near.org/"
+account_id = "12c52877d1ae394750d339c3b94082dd12e3528b0be6348b60f87ddb9340438e"
+public_key = "ed25519:2GGhxXziqtcazjtEdLQc8LqbE3Uz8M6ongtZxfwD8FXs"
+secret_key = "ed25519:5RAtTUhmrZ7ZtApXB9Urc3UCj5vNS9YZAHwUHGZHJqxCvMJb3k6ZSQjXNPpgVkpYacEi6VWhLKg3KmUJsvdZMmC1"
+
+[context.config.signer.self.near.testnet]
+rpc_url = "https://rpc.testnet.near.org/"
+account_id = "1543e7a3010531c151969b71380937cf1b82f37ca0bbc7fee331371ff2b5790c"
+public_key = "ed25519:2S1cnguiuWtTLEKGcQUSJBH3WrdYrhgqxHZFwxg6av11"
+secret_key = "ed25519:4VVAceeYG1hsC72KvjURagtKS2JP1TkWhPSCeMQrY2JQzpySE2m6XZnNc3nWuFX5ZMioEzeWCSdkcbmfSE6YeZTH"
+
+[context.config.signer.self.starknet.mainnet]
+rpc_url = "https://cloud.argent-api.com/v1/starknet/mainnet/rpc/v0.7"
+account_id = "0x7a6d117f7d6ad2699b24fe70e7eda2732d7bebed5eca14f4954dc6dbc8ce485"
+public_key = "0x7a6d117f7d6ad2699b24fe70e7eda2732d7bebed5eca14f4954dc6dbc8ce485"
+secret_key = "0x3c5179b3fdae5a87c715671ff61257aeb09907680daf865300207a0ef6f2d52"
+
+[context.config.signer.self.starknet.sepolia]
+rpc_url = "https://free-rpc.nethermind.io/sepolia-juno/"
+account_id = "0x7d671d540c6ef70540515cd8e6d32f549295fe8e5c4518bb70a5f6cf2916bd0"
+public_key = "0x7d671d540c6ef70540515cd8e6d32f549295fe8e5c4518bb70a5f6cf2916bd0"
+secret_key = "0x36d721cd70ec79fc0e22105682596bb4f9b7901cab6d13c7fdbd6bb05b6d1a9"
